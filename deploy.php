@@ -4,7 +4,7 @@ namespace Deployer;
 require 'recipe/common.php';
 
 // Project name
-set('application', 'my_project');
+set('application', 'deployer_test');
 
 // Project repository
 set('repository', 'https://github.com/ulmez/chas-deployapp.git');
@@ -14,7 +14,7 @@ set('git_tty', true);
 
 // Shared files/dirs between deploys 
 set('shared_files', []);
-set('shared_dirs', []);
+set('shared_dirs', ['shared']);
 
 // Writable dirs by web server 
 set('writable_dirs', []);
@@ -22,8 +22,10 @@ set('allow_anonymous_stats', false);
 
 // Hosts
 
-host('project.com')
-    ->set('deploy_path', '~/{{application}}');    
+host('localhost:8080')
+    ->set('deploy_path', '/vagrant/deployapp')
+    ->user('vagrant')
+    ->port(22);
     
 
 // Tasks
